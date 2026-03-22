@@ -6,6 +6,9 @@ import (
 	"strconv"
 )
 
+// toStringPtr is a helper to create a *string from a string literal, used in unParsableVMSizes.
+func toStringPtr(s string) *string { return &s }
+
 // This file adds support for more capabilities based on VM naming conventions that includes vmsize parsing.
 // VM naming conventions are documented at: https://docs.microsoft.com/en-us/azure/virtual-machines/vm-naming-conventions
 // Note: Some common capabilities like familyName and VCPUs, which can also be
@@ -28,6 +31,62 @@ var unParsableVMSizes = map[string]VMSizeType{
 		Version:                     "v2",
 		PromoVersion:                false,
 		Series:                      "Ms_v2",
+	},
+	// StandardNCRTXPRO6000BSEv6Family — ds (standard memory) variants
+	"NC128ds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "128",
+		AdditiveFeatures: []rune{'d', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NCds_v6",
+	},
+	"NC256ds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "256",
+		AdditiveFeatures: []rune{'d', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NCds_v6",
+	},
+	"NC320ds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "320",
+		AdditiveFeatures: []rune{'d', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NCds_v6",
+	},
+	// StandardNCRTXPRO6000BSEv6Family — lds (low memory) variants
+	"NC128lds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "128",
+		AdditiveFeatures: []rune{'l', 'd', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NClds_v6",
+	},
+	"NC256lds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "256",
+		AdditiveFeatures: []rune{'l', 'd', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NClds_v6",
+	},
+	"NC320lds_xl_RTXPRO6000BSE_v6": {
+		Family:           "N",
+		Subfamily:        toStringPtr("C"),
+		Cpus:             "320",
+		AdditiveFeatures: []rune{'l', 'd', 's'},
+		AcceleratorType:  toStringPtr("RTXPRO6000BSE"),
+		Version:          "v6",
+		Series:           "NClds_v6",
 	},
 }
 
